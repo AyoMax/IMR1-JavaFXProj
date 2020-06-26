@@ -1,4 +1,5 @@
-package sample;
+package app;
+
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -6,11 +7,11 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class Main extends Application {
+public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("./views/fxml/test.fxml"));
         primaryStage.setTitle("Puissance 4");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
