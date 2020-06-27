@@ -7,13 +7,17 @@ public class PionModel extends Observable {
 
     public enum EtatPion {UNPLAYED, PLAYED};
 
-    private EtatPion etat;
+    private    EtatPion etat;
     private JoueurModel joueur;
 
     public PionModel() {
         this.etat = EtatPion.UNPLAYED;
         this.joueur = null;
     }
+
+    /* =========== */
+    /*  FONCTIONS  */
+    /* =========== */
 
     /* ============ */
     /*  OBSERVABLE  */
@@ -49,6 +53,8 @@ public class PionModel extends Observable {
      */
     public void setEtat(EtatPion etat) {
         this.etat = etat;
+
+        this.notifyViews();
     }
 
     /**
