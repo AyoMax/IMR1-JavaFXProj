@@ -13,9 +13,6 @@ public class App extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         GridPane root = FXMLLoader.load(getClass().getResource("views/fxml/Main.fxml"));
-
-        //AnchorPane rootMenu = (AnchorPane) FXMLLoader.load(getClass().getResource("views/fxml/Menu.fxml"));
-        //root.getChildren().addAll(rootMenu);
         System.out.println(root);
         primaryStage.setTitle("Puissance 4");
         primaryStage.setScene(new Scene(root, 300, 275));

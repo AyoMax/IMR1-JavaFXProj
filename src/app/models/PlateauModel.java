@@ -37,7 +37,7 @@ public class PlateauModel extends Observable {
      * @param joueur
      * @param colIndex
      */
-    public void joueurPlayColumn(JoueurModel joueur, int colIndex) throws Error {
+    public void joueurPlayColumn(PlayerModel joueur, int colIndex) throws Error {
 
         int lastPlayRowIndex = findLastPionPlayedInCol(colIndex);
 

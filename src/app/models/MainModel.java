@@ -7,10 +7,10 @@ public class MainModel extends Observable {
 
     public enum EtatMain { MENU, PLAYERCONFIG, GAME, RANK }
 
-    private EtatMain etat;
-    private PlateauModel  plateau;
-    private JoueurModel[] joueurs;
-    private           int nbTour;
+    private EtatMain        etat;
+    private PlateauModel    plateau;
+    private PlayerModel[]   joueurs;
+    private int             nbTour;
 
     public MainModel() {
         this.etat = EtatMain.MENU;
@@ -20,7 +20,7 @@ public class MainModel extends Observable {
     /*  FONCTIONS  */
     /* =========== */
 
-    public void nextState() {
+    public EtatMain nextState() {
         // TODO : ci-dessous: pas bon : depuis menu, on peut aller à playerconfig ou rank
         switch (etat) {
             case MENU:
@@ -35,7 +35,29 @@ public class MainModel extends Observable {
             case RANK:
                 etat = EtatMain.MENU;
                 break;
+
         }
+        return etat;
+    }
+
+    public void getStateModel(EtatMain etatMain) {
+        // TODO : ci-dessous: pas bon : depuis menu, on peut aller à playerconfig ou rank
+        switch (etat) {
+            case MENU:
+
+                break;
+            case PLAYERCONFIG:
+                etat = EtatMain.GAME;
+                break;
+            case GAME:
+                etat = EtatMain.RANK;
+                break;
+            case RANK:
+                etat = EtatMain.MENU;
+                break;
+        }
+        return
+        this.notifyViews();
     }
 
     public void reinit() {
@@ -97,7 +119,7 @@ public class MainModel extends Observable {
      * Retourne les joueurs de la partie
      * @return Joueurs de la partie
      */
-    public JoueurModel[] getJoueurs() {
+    public PlayerModel[] getJoueurs() {
         return joueurs;
     }
 
@@ -105,7 +127,7 @@ public class MainModel extends Observable {
      * Définit les joueurs de la partie
      * @param joueurs Joueurs à assigner à la partie
      */
-    public void setJoueurs(JoueurModel[] joueurs) {
+    public void setJoueurs(PlayerModel[] joueurs) {
         this.joueurs = joueurs;
     }
 
