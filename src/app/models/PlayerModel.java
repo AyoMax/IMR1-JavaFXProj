@@ -7,7 +7,7 @@ import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
-public class PlayerModel extends Observable {
+public class PlayerModel extends Model {
 
     static private HashMap<String, PlayerModel> joueurs;
     static public String saveFilepath = "src/data.txt";
@@ -66,21 +66,6 @@ public class PlayerModel extends Observable {
         }
     }
 
-    /* ============ */
-    /*  OBSERVABLE  */
-    /* ============ */
-    public void addView(Observer vue) {
-        addObserver(vue);
-    }
-
-    public void removeView(Observer vue) {
-        deleteObserver(vue);
-    }
-
-    public void notifyViews() {
-        setChanged();
-        notifyObservers();
-    }
 
     /* ==================== */
     /*  GETTERS  & SETTERS  */

@@ -1,6 +1,7 @@
 package app.controllers;
 
 import app.models.MainModel;
+import app.models.Model;
 import app.views.ViewSkill;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -35,11 +36,11 @@ public class MainController implements Initializable, Observer {
         System.out.print("Observer OK");
         mainContainer.getChildren().remove(actualView);
         try{
-            String viewName = mainModel.getEtat().name().toLowerCase()+"View";
+            String viewName = mainModel.getState().name().toLowerCase()+"View";
             System.out.println("ViewName : "+viewName);
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/fxml/"+viewName+".fxml"));
             Node newView = loader.load();
-            ((ViewSkill)loader.getController()).setModel(mainModel);
+            ((ViewSkill)loader.getController()).setModel((Model) mainModel);
             mainContainer.add( newView, 0, 0);
             actualView = newView;
         }catch (Exception err){

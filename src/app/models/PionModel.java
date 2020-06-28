@@ -3,7 +3,7 @@ package app.models;
 import java.util.Observable;
 import java.util.Observer;
 
-public class PionModel extends Observable {
+public class PionModel extends Model {
 
     public enum EtatPion {UNPLAYED, PLAYED};
 
@@ -19,21 +19,7 @@ public class PionModel extends Observable {
     /*  FONCTIONS  */
     /* =========== */
 
-    /* ============ */
-    /*  OBSERVABLE  */
-    /* ============ */
-    public void addView(Observer vue) {
-        addObserver(vue);
-    }
 
-    public void removeView(Observer vue) {
-        deleteObserver(vue);
-    }
-
-    public void notifyViews() {
-        setChanged();
-        notifyObservers();
-    }
 
     /* ==================== */
     /*  GETTERS  & SETTERS  */

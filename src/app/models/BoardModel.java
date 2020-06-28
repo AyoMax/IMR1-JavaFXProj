@@ -3,13 +3,13 @@ package app.models;
 import java.util.Observable;
 import java.util.Observer;
 
-public class PlateauModel extends Observable {
+public class BoardModel extends Model {
 
     private           int nbCol;
     private           int nbRow;
     private PionModel[][] pions;
 
-    public PlateauModel() {
+    public BoardModel() {
         this.nbCol = 7;
         this.nbRow = 6;
         this.pions = new PionModel[nbCol][nbRow];
@@ -66,21 +66,6 @@ public class PlateauModel extends Observable {
         return rowIndex;
     }
 
-    /* ============ */
-    /*  OBSERVABLE  */
-    /* ============ */
-    public void addView(Observer vue) {
-        addObserver(vue);
-    }
-
-    public void removeView(Observer vue) {
-        deleteObserver(vue);
-    }
-
-    public void notifyViews() {
-        setChanged();
-        notifyObservers();
-    }
 
     /* ==================== */
     /*  GETTERS  & SETTERS  */
