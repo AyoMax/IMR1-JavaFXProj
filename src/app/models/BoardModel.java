@@ -5,6 +5,8 @@ import java.util.Observer;
 
 public class BoardModel extends Model {
 
+    public enum direction { HORIZONTAL, VERTICAL, DIAGLEFTRIGHT, DIAGRIGHTLEFT };
+
     private           int nbCol;
     private           int nbRow;
     private PionModel[][] pions;
@@ -22,7 +24,7 @@ public class BoardModel extends Model {
     /* =========== */
 
     /**
-     *
+     * Instancie les pions
      */
     private void generatePions() {
         for (int i = 0; i < nbCol; i++) {
@@ -66,6 +68,27 @@ public class BoardModel extends Model {
         return rowIndex;
     }
 
+
+    private boolean checkDirection(PlayerModel cPlayer, int origineCol, int origineRow) {
+        // TODO : to fisnish
+        int compteur = 1;
+        int decalRow = 1;
+        int decalCol = 1;
+
+        while (pions[origineCol + decalRow][origineRow + decalRow].getJoueur() == cPlayer) {
+            compteur++;
+        }
+
+        while (pions[origineCol - decalRow][origineRow - decalRow].getJoueur() == cPlayer) {
+            compteur++;
+        }
+
+        if (compteur >= 4) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     /* ==================== */
     /*  GETTERS  & SETTERS  */

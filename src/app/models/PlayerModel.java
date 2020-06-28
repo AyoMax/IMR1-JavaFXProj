@@ -17,9 +17,9 @@ public class PlayerModel extends Model {
     private int score;
 
     public PlayerModel(String name) {
-        if (PlayerModel.joueurs == null) initJoueursFromFile();
-
-        // TODO : éventuelle récupération du joueur dans le fichier
+        this.name = name;
+        this.color = new Color(0,0,0,1);
+        this.score = 0;
     }
 
     public PlayerModel(String name, Color color) {
@@ -31,6 +31,16 @@ public class PlayerModel extends Model {
     /* =========== */
     /*  FONCTIONS  */
     /* =========== */
+
+    static public PlayerModel getInstance(String name) {
+        if (PlayerModel.joueurs == null) initJoueursFromFile();
+
+        if (joueurs.containsKey(name)) {
+            return joueurs.get(name);
+        } else {
+            return new PlayerModel(name);
+        }
+    }
 
     /* DATA FILE MANAGEMENT */
     /**
