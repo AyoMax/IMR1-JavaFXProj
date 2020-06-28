@@ -1,0 +1,6 @@
+bouton{
+    -fx-background-color: aqua;
+}
+bouton:hover{
+    -fx-background-color: aquamarine;
+}

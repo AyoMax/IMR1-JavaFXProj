@@ -3,12 +3,12 @@ package app.models;
 import java.util.Observable;
 import java.util.Observer;
 
-public class PionModel extends Observable {
+public class PionModel extends Model {
 
     public enum EtatPion {UNPLAYED, PLAYED};
 
     private    EtatPion etat;
-    private JoueurModel joueur;
+    private PlayerModel joueur;
 
     public PionModel() {
         this.etat = EtatPion.UNPLAYED;
@@ -19,21 +19,7 @@ public class PionModel extends Observable {
     /*  FONCTIONS  */
     /* =========== */
 
-    /* ============ */
-    /*  OBSERVABLE  */
-    /* ============ */
-    public void addView(Observer vue) {
-        addObserver(vue);
-    }
 
-    public void removeView(Observer vue) {
-        deleteObserver(vue);
-    }
-
-    public void notifyViews() {
-        setChanged();
-        notifyObservers();
-    }
 
     /* ==================== */
     /*  GETTERS  & SETTERS  */
@@ -61,7 +47,7 @@ public class PionModel extends Observable {
      * Retourne le joueur du pion.
      * @return Joueur du pion
      */
-    public JoueurModel getJoueur() {
+    public PlayerModel getJoueur() {
         return joueur;
     }
 
@@ -69,7 +55,7 @@ public class PionModel extends Observable {
      * Définit le joueur du pion.
      * @param joueur Joueur à assigner au pion
      */
-    public void setJoueur(JoueurModel joueur) {
+    public void setJoueur(PlayerModel joueur) {
         this.joueur = joueur;
     }
 }

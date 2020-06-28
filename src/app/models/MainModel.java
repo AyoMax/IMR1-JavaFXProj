@@ -1,16 +1,13 @@
 package app.models;
 
-import java.util.Observable;
-import java.util.Observer;
-
-public class MainModel extends Observable {
+public class MainModel extends Model {
 
     public enum EtatMain { MENU, PLAYERCONFIG, GAME, RANK }
 
-    private EtatMain etat;
-    private PlateauModel  plateau;
-    private JoueurModel[] joueurs;
-    private           int nbTour;
+    private EtatMain        etat;
+    private BoardModel board;
+    private PlayerModel[]   players;
+    private int             nbTour;
 
     public MainModel() {
         this.etat = EtatMain.MENU;
@@ -20,11 +17,11 @@ public class MainModel extends Observable {
     /*  FONCTIONS  */
     /* =========== */
 
-    public void nextState() {
+     public void getStateModel(EtatMain etatMain) {
         // TODO : ci-dessous: pas bon : depuis menu, on peut aller à playerconfig ou rank
         switch (etat) {
             case MENU:
-                etat = EtatMain.PLAYERCONFIG;
+
                 break;
             case PLAYERCONFIG:
                 etat = EtatMain.GAME;
@@ -42,21 +39,7 @@ public class MainModel extends Observable {
         this.setNbTour(0);
     }
 
-    /* ============ */
-    /*  OBSERVABLE  */
-    /* ============ */
-    public void addView(Observer vue) {
-        addObserver(vue);
-    }
 
-    public void removeView(Observer vue) {
-        deleteObserver(vue);
-    }
-
-    public void notifyViews() {
-        setChanged();
-        notifyObservers();
-    }
 
     /* ==================== */
     /*  GETTERS  & SETTERS  */
@@ -65,7 +48,7 @@ public class MainModel extends Observable {
      * Retourne l'état de la vue principale
      * @return Etat de la vue principale
      */
-    public EtatMain getEtat() {
+    public EtatMain getState() {
         return etat;
     }
 
@@ -73,7 +56,7 @@ public class MainModel extends Observable {
      * Définit l'état de la vue principale
      * @param etat Etat à assigner à la vue principale
      */
-    public void setEtat(EtatMain etat) {
+    public void setState(EtatMain etat) {
         this.etat = etat;
     }
 
@@ -81,32 +64,32 @@ public class MainModel extends Observable {
      * Retourne le plateau de la partie
      * @return Plateau de la partie
      */
-    public PlateauModel getPlateau() {
-        return plateau;
+    public BoardModel getBoard() {
+        return board;
     }
 
     /**
      * Définit le plateau de la partie
-     * @param plateau Plateau à assigner à la partie
+     * @param board Plateau à assigner à la partie
      */
-    public void setPlateau(PlateauModel plateau) {
-        this.plateau = plateau;
+    public void setBoard(BoardModel board) {
+        this.board = board;
     }
 
     /**
      * Retourne les joueurs de la partie
      * @return Joueurs de la partie
      */
-    public JoueurModel[] getJoueurs() {
-        return joueurs;
+    public PlayerModel[] getPlayers() {
+        return players;
     }
 
     /**
      * Définit les joueurs de la partie
-     * @param joueurs Joueurs à assigner à la partie
+     * @param players Joueurs à assigner à la partie
      */
-    public void setJoueurs(JoueurModel[] joueurs) {
-        this.joueurs = joueurs;
+    public void setPlayers(PlayerModel[] players) {
+        this.players = players;
     }
 
     /**
