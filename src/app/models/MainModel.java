@@ -9,7 +9,7 @@ public class MainModel extends Observable {
 
     private EtatMain etat;
     private PlateauModel  plateau;
-    private JoueurModel[] joueurs;
+    private PlayerModel[] joueurs;
     private           int nbTour;
 
     public MainModel() {
@@ -97,7 +97,7 @@ public class MainModel extends Observable {
      * Retourne les joueurs de la partie
      * @return Joueurs de la partie
      */
-    public JoueurModel[] getJoueurs() {
+    public PlayerModel[] getJoueurs() {
         return joueurs;
     }
 
@@ -105,7 +105,7 @@ public class MainModel extends Observable {
      * Définit les joueurs de la partie
      * @param joueurs Joueurs à assigner à la partie
      */
-    public void setJoueurs(JoueurModel[] joueurs) {
+    public void setJoueurs(PlayerModel[] joueurs) {
         this.joueurs = joueurs;
     }
 

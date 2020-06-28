@@ -8,7 +8,7 @@ public class PionModel extends Observable {
     public enum EtatPion {UNPLAYED, PLAYED};
 
     private    EtatPion etat;
-    private JoueurModel joueur;
+    private PlayerModel joueur;
 
     public PionModel() {
         this.etat = EtatPion.UNPLAYED;
@@ -61,7 +61,7 @@ public class PionModel extends Observable {
      * Retourne le joueur du pion.
      * @return Joueur du pion
      */
-    public JoueurModel getJoueur() {
+    public PlayerModel getJoueur() {
         return joueur;
     }
 
@@ -69,7 +69,7 @@ public class PionModel extends Observable {
      * Définit le joueur du pion.
      * @param joueur Joueur à assigner au pion
      */
-    public void setJoueur(JoueurModel joueur) {
+    public void setJoueur(PlayerModel joueur) {
         this.joueur = joueur;
     }
 }

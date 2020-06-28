@@ -3,27 +3,26 @@ package app.models;
 import javafx.scene.paint.Color;
 
 import java.io.*;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Observable;
 import java.util.Observer;
 
-public class JoueurModel extends Observable {
+public class PlayerModel extends Observable {
 
-    static private HashMap<String, JoueurModel> joueurs;
+    static private HashMap<String, PlayerModel> joueurs;
     static public String saveFilepath = "src/data.txt";
 
     private String name;
     private Color color;
     private int score;
 
-    public JoueurModel(String name) {
-        if (JoueurModel.joueurs == null) initJoueursFromFile();
-
-        // TODO : éventuelle récupération du joueur dans le fichier
+    public PlayerModel(String name) {
+        this.name = name;
+        this.color = new Color(0,0,0,1);
+        this.score = 0;
     }
 
-    public JoueurModel(String name, Color color) {
+    public PlayerModel(String name, Color color) {
         this.name = name;
         this.color = color;
         this.score = 0;
@@ -33,6 +32,16 @@ public class JoueurModel extends Observable {
     /*  FONCTIONS  */
     /* =========== */
 
+    static public PlayerModel getInstance(String name) {
+        if (PlayerModel.joueurs == null) initJoueursFromFile();
+
+        if (joueurs.containsKey(name)) {
+            return joueurs.get(name);
+        } else {
+            return new PlayerModel(name);
+        }
+    }
+
     /* DATA FILE MANAGEMENT */
     /**
      * Récupère les joueurs dans le fichier de sauvegarde
@@ -41,9 +50,9 @@ public class JoueurModel extends Observable {
         FileInputStream fin = null;
 
         try {
-            fin = new FileInputStream(JoueurModel.saveFilepath);
+            fin = new FileInputStream(PlayerModel.saveFilepath);
             ObjectInputStream oin = new ObjectInputStream(fin);
-            joueurs = (HashMap<String, JoueurModel>) oin.readObject();
+            joueurs = (HashMap<String, PlayerModel>) oin.readObject();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -56,10 +65,10 @@ public class JoueurModel extends Observable {
      */
     static public void saveInFile() {
 
-        File saveFile = new File(JoueurModel.saveFilepath);
+        File saveFile = new File(PlayerModel.saveFilepath);
 
         try {
-            FileOutputStream fout = new FileOutputStream(JoueurModel.saveFilepath);
+            FileOutputStream fout = new FileOutputStream(PlayerModel.saveFilepath);
             ObjectOutputStream oout = new ObjectOutputStream(fout);
             oout.writeObject(joueurs);
         } catch (IOException e) {
