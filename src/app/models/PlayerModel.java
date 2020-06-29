@@ -30,13 +30,14 @@ public class PlayerModel extends Model implements Comparable<PlayerModel> {
     /*  FONCTIONS  */
     /* =========== */
 
-    static public PlayerModel getInstance(String name) {
+    static public PlayerModel getInstance(String name, Color color) {
         if (PlayerModel.players == null) initJoueursFromFile();
 
         if (players.containsKey(name)) {
+            players.get(name).setColor(color);
             return players.get(name);
         } else {
-            return new PlayerModel(name);
+            return new PlayerModel(name, color);
         }
     }
 

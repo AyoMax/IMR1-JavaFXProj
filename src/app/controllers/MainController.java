@@ -43,7 +43,7 @@ public class MainController implements Initializable, Observer {
             Node newView = loader.load();
             ViewSkill newViewController = ((ViewSkill)loader.getController());
             newViewController.setParentModel(mainModel);
-            mainContainer.add( newView, 0, 0);
+            mainContainer.add(newView, 0, 0);
             actualView = newView;
         }catch (Exception err){
             System.out.println("Problème de chargement de View en fonction de l'état du MainModel.");
