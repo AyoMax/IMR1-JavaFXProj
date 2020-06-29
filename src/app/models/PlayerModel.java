@@ -7,7 +7,7 @@ import java.util.HashMap;
 
 public class PlayerModel extends Model implements Comparable<PlayerModel> {
 
-    static public HashMap<String, PlayerModel> players;
+    static public HashMap<String, PlayerModel> players = new HashMap<>();
     static public String saveFilepath = "src/data.txt";
 
     private String name;
@@ -31,13 +31,17 @@ public class PlayerModel extends Model implements Comparable<PlayerModel> {
     /* =========== */
 
     static public PlayerModel getInstance(String name, Color color) {
-        if (PlayerModel.players == null) initJoueursFromFile();
+        if (players.size() == 0) initJoueursFromFile();
 
-        if (players.containsKey(name)) {
+        if (players.size() != 0 && players.containsKey(name)) {
             players.get(name).setColor(color);
+            System.out.println("oldPlayer");
             return players.get(name);
         } else {
-            return new PlayerModel(name, color);
+            PlayerModel newPlayer = new PlayerModel(name, color);
+            players.put(name, newPlayer);
+            System.out.println("newPlayer");
+            return newPlayer;
         }
     }
 
@@ -52,15 +56,32 @@ public class PlayerModel extends Model implements Comparable<PlayerModel> {
      */
     static private void initJoueursFromFile() {
         FileInputStream fin = null;
+        ObjectInputStream oin = null;
 
         try {
             fin = new FileInputStream(PlayerModel.saveFilepath);
-            ObjectInputStream oin = new ObjectInputStream(fin);
-            players = (HashMap<String, PlayerModel>) oin.readObject();
-        } catch (IOException e) {
+            oin = new ObjectInputStream(fin);
+            PlayerModel.players = (HashMap<String, PlayerModel>) oin.readObject();
+        } catch (EOFException e) {
+        } catch (Exception e) {
             e.printStackTrace();
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
+        } finally {
+            if (fin != null) {
+                try {
+                    fin.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            if (oin != null) {
+                try {
+                    oin.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
         }
     }
 
