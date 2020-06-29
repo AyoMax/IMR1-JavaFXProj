@@ -1,16 +1,13 @@
 package app.models;
 
-import java.util.Observable;
-import java.util.Observer;
-
-public class PionModel extends Model {
+public class PawnModel extends Model {
 
     public enum EtatPion {UNPLAYED, PLAYED};
 
     private    EtatPion etat;
     private PlayerModel joueur;
 
-    public PionModel() {
+    public PawnModel() {
         this.etat = EtatPion.UNPLAYED;
         this.joueur = null;
     }

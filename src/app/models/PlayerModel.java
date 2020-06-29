@@ -4,12 +4,10 @@ import javafx.scene.paint.Color;
 
 import java.io.*;
 import java.util.HashMap;
-import java.util.Observable;
-import java.util.Observer;
 
-public class PlayerModel extends Model {
+public class PlayerModel extends Model implements Comparable<PlayerModel> {
 
-    static private HashMap<String, PlayerModel> joueurs;
+    static public HashMap<String, PlayerModel> players;
     static public String saveFilepath = "src/data.txt";
 
     private String name;
@@ -33,13 +31,18 @@ public class PlayerModel extends Model {
     /* =========== */
 
     static public PlayerModel getInstance(String name) {
-        if (PlayerModel.joueurs == null) initJoueursFromFile();
+        if (PlayerModel.players == null) initJoueursFromFile();
 
-        if (joueurs.containsKey(name)) {
-            return joueurs.get(name);
+        if (players.containsKey(name)) {
+            return players.get(name);
         } else {
             return new PlayerModel(name);
         }
+    }
+
+    @Override
+    public int compareTo(PlayerModel player) {
+        return this.score - player.getScore();
     }
 
     /* DATA FILE MANAGEMENT */
@@ -52,7 +55,7 @@ public class PlayerModel extends Model {
         try {
             fin = new FileInputStream(PlayerModel.saveFilepath);
             ObjectInputStream oin = new ObjectInputStream(fin);
-            joueurs = (HashMap<String, PlayerModel>) oin.readObject();
+            players = (HashMap<String, PlayerModel>) oin.readObject();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ClassNotFoundException e) {
@@ -70,7 +73,7 @@ public class PlayerModel extends Model {
         try {
             FileOutputStream fout = new FileOutputStream(PlayerModel.saveFilepath);
             ObjectOutputStream oout = new ObjectOutputStream(fout);
-            oout.writeObject(joueurs);
+            oout.writeObject(players);
         } catch (IOException e) {
             e.printStackTrace();
         }

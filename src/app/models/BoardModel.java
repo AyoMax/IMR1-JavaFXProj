@@ -1,22 +1,35 @@
 package app.models;
 
-import java.util.Observable;
-import java.util.Observer;
-
 public class BoardModel extends Model {
 
-    public enum direction { HORIZONTAL, VERTICAL, DIAGLEFTRIGHT, DIAGRIGHTLEFT };
+    public enum CheckDirection {
+        HORIZONTAL      (1, 0),
+        VERTICAL        (0, 1),
+        DIAGLEFTRIGHT   (1, 1),
+        DIAGRIGHTLEFT   (1, -1);
+
+        private int decalCol;
+        private int decalRow;
+
+        CheckDirection(int decalCol, int decalRow) {
+            this.decalCol = decalCol;
+            this.decalRow = decalRow;
+        }
+
+        public int decalCol() { return this.decalCol; };
+        public int decalRow() { return this.decalRow; };
+    };
 
     private           int nbCol;
     private           int nbRow;
-    private PionModel[][] pions;
+    private PawnModel[][] pawns;
 
     public BoardModel() {
         this.nbCol = 7;
         this.nbRow = 6;
-        this.pions = new PionModel[nbCol][nbRow];
+        this.pawns = new PawnModel[nbCol][nbRow];
 
-        this.generatePions();
+        this.generatePawns();
     }
 
     /* =========== */
@@ -24,33 +37,35 @@ public class BoardModel extends Model {
     /* =========== */
 
     /**
-     * Instancie les pions
+     * Instancie la grille de pion.
      */
-    private void generatePions() {
+    private void generatePawns() {
         for (int i = 0; i < nbCol; i++) {
             for (int j = 0; j < nbRow; j++) {
-                this.pions[i][j] = new PionModel();
+                this.pawns[i][j] = new PawnModel();
             }
         }
     }
 
     /**
-     *
-     * @param joueur
-     * @param colIndex
+     * Place le pion d'un joueur dans une colonne donnée et indique si le joueur a gagné
+     * @param player Joueur qui place un pion
+     * @param colIndex Indice de la colonne dans laquelle placer le pion
+     * @return true si le joueur a gagné, false sinon
      */
-    public void joueurPlayColumn(PlayerModel joueur, int colIndex) throws Error {
+    public boolean playerPlayColumn(PlayerModel player, int colIndex) throws Error {
 
-        int lastPlayRowIndex = findLastPionPlayedInCol(colIndex);
+        int lastPlayRowIndex = findLastPawnPlayedInCol(colIndex);
 
         if (lastPlayRowIndex != 0) {
-            this.pions[colIndex][lastPlayRowIndex - 1].setJoueur(joueur);
-            this.pions[colIndex][lastPlayRowIndex - 1].setEtat(PionModel.EtatPion.PLAYED);
+            this.pawns[colIndex][lastPlayRowIndex - 1].setJoueur(player);
+            this.pawns[colIndex][lastPlayRowIndex - 1].setEtat(PawnModel.EtatPion.PLAYED);
         } else {
             // TODO : Définir une erreur pour indiquer qu'on ne peut plus jouer de pion dans la colonne appelée.
             throw new Error();
         }
 
+        return checkWin(player, colIndex, lastPlayRowIndex - 1);
     }
 
     /**
@@ -58,36 +73,61 @@ public class BoardModel extends Model {
      * @param colIndex Numéro de la colonne à analyser
      * @return rowIndex : Numéro de la ligne dans laquelle chercher le dernier pion joué
      */
-    private int findLastPionPlayedInCol(int colIndex) {
+    private int findLastPawnPlayedInCol(int colIndex) {
         int rowIndex = 0;
 
-        while (this.pions[colIndex][rowIndex].getEtat() != PionModel.EtatPion.PLAYED) {
+        while (this.pawns[colIndex][rowIndex].getEtat() != PawnModel.EtatPion.PLAYED) {
             rowIndex++;
         }
 
         return rowIndex;
     }
 
+    /**
+     * Vérifie si le joueur qui a joué a gagné.
+     * @param cPlayer Joueur qui a joué
+     * @param cCol Colonne dans lequel le joueur a joué
+     * @param cRow Ligne dans laquelle le joueur a joué
+     * @return true si le joueur a gagné, false sinon
+     */
+    private boolean checkWin(PlayerModel cPlayer, int cCol, int cRow) {
+        for (CheckDirection direction : CheckDirection.values()) {
+            // Si 4 pions sont alignés dans une direction données à partir du pion joué,
+            //      alors le joueur a gagné
+            if (checkDirection(cPlayer, cCol, cRow, direction)) {
+                return true;
+            }
+        }
 
-    private boolean checkDirection(PlayerModel cPlayer, int origineCol, int origineRow) {
-        // TODO : to fisnish
+        return false;
+    }
+
+    /**
+     * Vérifie si un joueur a gagné selon une direction donnée, en partant d'un emplacement ou il a joué.
+     * @param cPlayer Joueur dont on vérifie la victoire
+     * @param origineCol Colonne de départ de la vérification
+     * @param origineRow Ligne de départ de la vérification
+     * @param direction Direction à vérifier
+     * @return true si le joueur a gagné selon la direction donnée, false sinon
+     */
+    private boolean checkDirection(PlayerModel cPlayer, int origineCol, int origineRow, CheckDirection direction) {
         int compteur = 1;
-        int decalRow = 1;
-        int decalCol = 1;
 
-        while (pions[origineCol + decalRow][origineRow + decalRow].getJoueur() == cPlayer) {
+        // Vérification à droite/en bas du pion d'origine
+        int i = 1;
+        while (pawns[origineCol + i * direction.decalCol][origineRow + i * direction.decalRow].getJoueur() == cPlayer) {
+            i++;
             compteur++;
         }
 
-        while (pions[origineCol - decalRow][origineRow - decalRow].getJoueur() == cPlayer) {
+        // Vérification à gauche/en haut du pion d'origne
+        int j = 1;
+        while (pawns[origineCol - j * direction.decalCol][origineRow - j * direction.decalRow].getJoueur() == cPlayer) {
+            j++;
             compteur++;
         }
 
-        if (compteur >= 4) {
-            return true;
-        } else {
-            return false;
-        }
+        return compteur >= 4;
     }
 
     /* ==================== */
@@ -131,18 +171,23 @@ public class BoardModel extends Model {
     }
 
     /**
-     *
-     * @return
+     * Retourne la grille de pion du plateau.
+     * @return Grille de pion du plateau
      */
-    public PionModel[][] getPions() {
-        return pions;
+    public PawnModel[][] getPawns() {
+        return pawns;
     }
 
     /**
-     *
-     * @param pions
+     * Définit la grille de pion du plateau.
+     * @param pawns Grille de pion à assigner au plateau
      */
-    public void setPions(PionModel[][] pions) {
-        this.pions = pions;
+    public void setPawns(PawnModel[][] pawns) throws Error {
+        if (this.pawns.length == this.nbCol) {
+            this.pawns = pawns;
+        } else {
+            // TODO définir une erreur si une grille d'une mauvaise taille est passée en paramètre
+            throw new Error();
+        }
     }
 }
