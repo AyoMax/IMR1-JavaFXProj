@@ -33,18 +33,21 @@ public class MainController implements Initializable, Observer {
 
     @Override
     public void update(Observable o, Object arg) {
-        System.out.print("Observer OK");
+        System.out.println("Observer OK");
         mainContainer.getChildren().remove(actualView);
         try{
             String viewName = mainModel.getState().name().toLowerCase()+"View";
             System.out.println("ViewName : "+viewName);
+            System.out.println("../views/fxml/"+viewName+".fxml");
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/fxml/"+viewName+".fxml"));
             Node newView = loader.load();
-            ((ViewSkill)loader.getController()).setModel((Model) mainModel);
+            ViewSkill newViewController = ((ViewSkill)loader.getController());
+            newViewController.setParentModel(mainModel);
             mainContainer.add( newView, 0, 0);
             actualView = newView;
         }catch (Exception err){
             System.out.println("Problème de chargement de View en fonction de l'état du MainModel.");
+            System.out.println(err);
         }
 
     }
