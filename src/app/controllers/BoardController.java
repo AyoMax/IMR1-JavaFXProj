@@ -23,13 +23,17 @@ public class BoardController implements Initializable, Observer {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        System.out.println("View plateau");
     }
 
     // TODO handler sur la gridPane --> onclick récupération de la column et appelle de la méthode du BoardModel
 
     @Override
     public void update(Observable observable, Object o) {
+        refresh();
+    }
+
+    public void refresh(){
         // Récupérations des pions
         PawnModel[][] pawns = boardModel.getPawns();
 
@@ -64,5 +68,6 @@ public class BoardController implements Initializable, Observer {
         this.boardModel = boardModel;
         this.boardModel.addView(this);
         this.boardModel.notifyViews();
+        refresh();
     }
 }

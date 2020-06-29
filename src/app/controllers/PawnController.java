@@ -16,7 +16,7 @@ import java.util.ResourceBundle;
 
 public class PawnController implements Initializable, Observer, ViewSkill {
 
-    private static final Color DEFAULTCOLOR = new Color(255, 255, 255, 1);
+    private static final Color DEFAULTCOLOR = Color.WHITE;
 
     private PawnModel pawnModel;
 
@@ -29,7 +29,7 @@ public class PawnController implements Initializable, Observer, ViewSkill {
     }
 
     @Override
-    public void setParentModel(MainModel model) {
+    public void setMainModel(MainModel model) {
 
     }
 

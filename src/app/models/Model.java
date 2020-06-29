@@ -13,6 +13,7 @@ public class Model extends Observable{
     }
 
     public void notifyViews() {
+        System.out.println("Refresh Views...");
         setChanged();
         notifyObservers();
     }

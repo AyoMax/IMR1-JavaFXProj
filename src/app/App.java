@@ -16,7 +16,7 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception{
         GridPane root = FXMLLoader.load(getClass().getResource("views/fxml/Main.fxml"));
         primaryStage.setTitle("Puissance 4");
-        primaryStage.setScene(new Scene(root, 300, 275));
+        primaryStage.setScene(new Scene(root, 1000, 1000));
         primaryStage.show();
 
 //        System.out.println("before create : " + PlayerModel.players.size());

@@ -37,7 +37,14 @@ public class MenuController implements Initializable, ViewSkill {
         parentModel.setState(MainModel.MainState.PLAYERCONFIG);
         parentModel.notifyViews();
     }
-    public void setParentModel(MainModel model){
+    @FXML
+    protected void onClickRankingButton(ActionEvent e){
+        parentModel.setState(MainModel.MainState.RANK);
+        parentModel.notifyViews();
+    }
+
+
+    public void setMainModel(MainModel model){
         this.parentModel = model;
     }
 

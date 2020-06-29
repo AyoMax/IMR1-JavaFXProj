@@ -6,9 +6,15 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="app.views.fxml.RankView"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="app.controllers.RankController">
+    <children>
+        <VBox alignment="CENTER">
+            <children>
+                <Label text="Classement" />
+                <VBox fx:id="playerRankingContainer" alignment="CENTER">
+                </VBox>
+                <Button fx:id="rankingBtn" mnemonicParsing="false" text="Jouer" onAction="#onClickMenuButton" />
+            </children>
+        </VBox>
+    </children>
 </AnchorPane>

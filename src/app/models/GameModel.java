@@ -1,6 +1,6 @@
 package app.models;
 
-public class GameModel {
+public class GameModel extends Model{
 
     private BoardModel      board;
     private PlayerModel[]   players;

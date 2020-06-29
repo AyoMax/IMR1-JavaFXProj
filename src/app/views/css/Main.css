@@ -4,3 +4,7 @@ bouton{
 bouton:hover{
     -fx-background-color: aquamarine;
 }
+
+#boardContainer{
+    -fx-background-color: blue;
+}
