@@ -1,5 +1,6 @@
 package app.controllers;
 
+import app.models.GameModel;
 import app.models.MainModel;
 import app.models.Model;
 import app.models.PlayerconfigModel;
@@ -14,36 +15,42 @@ import java.util.ResourceBundle;
 
 import static java.lang.Integer.valueOf;
 
-public class MenuController implements Initializable, ViewSkill {
+public class PlayerconfigController implements Initializable, ViewSkill {
 
     MainModel parentModel;
-    Model viewModel;
-    PlayerconfigModel nextViewModel;
+    PlayerconfigModel viewModel;
+    GameModel nextViewModel;
 
     @FXML
-    protected void onClickPlayerNumberChoice(ActionEvent e){
-        Button targetButton = (Button) e.getTarget();
-        int nbPlayer = valueOf(targetButton.getId());
-
-        System.out.print(nbPlayer);
+    protected void onClickValidate(ActionEvent e){
+        System.out.println("Valider");
 
         // TODO : MenuModel.setNbPlayer();
         // Préviens le MenuModel du nombre de joueur
-        nextViewModel = parentModel.getPlayerconfigModel();
-        nextViewModel.setNbPlayer(nbPlayer);
+        //nextViewModel = parentModel.getPlayerconfigModel();
 
         // TODO : MainModel.nextState();
         // Change l'application d'état, de menu vers Player Config
-        parentModel.setState(MainModel.MainState.PLAYERCONFIG);
-        parentModel.notifyViews();
+        //parentModel.setState(MainModel.MainState.PLAYERCONFIG);
+        //parentModel.notifyViews();
     }
     public void setParentModel(MainModel model){
+
         this.parentModel = model;
+        this.init();
+
     }
+
+    public void init(){
+        System.out.println("------------------------------------");
+        viewModel = parentModel.getPlayerconfigModel();
+        int nbPlayer = viewModel.getNbPlayer();
+        System.out.println("Nombre de joueur : "+nbPlayer);
+    }
+
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
 
     }
-
 }

@@ -3,7 +3,7 @@ package app.models;
 import java.util.Observable;
 import java.util.Observer;
 
-public abstract class Model extends Observable{
+public class Model extends Observable{
     public void addView(Observer vue) {
         addObserver(vue);
     }
