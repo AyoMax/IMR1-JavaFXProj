@@ -18,11 +18,6 @@ public class App extends Application {
         primaryStage.setTitle("Puissance 4");
         primaryStage.setScene(new Scene(root, 300, 275));
         primaryStage.show();
-
-//        System.out.println("before create : " + PlayerModel.players.size());
-//        PlayerModel pm = PlayerModel.getInstance("bidule", new Color(0,1,0,1));
-//        System.out.println("after create : " + PlayerModel.players.size());
-//        PlayerModel.saveInFile();
     }
 
 

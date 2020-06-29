@@ -5,24 +5,32 @@ import javafx.scene.paint.Color;
 import java.io.*;
 import java.util.HashMap;
 
-public class PlayerModel extends Model implements Comparable<PlayerModel> {
+public class PlayerModel extends Model implements Comparable<PlayerModel>, Serializable {
+
+    static final long serialVersionUID = 225;
 
     static public HashMap<String, PlayerModel> players = new HashMap<>();
     static public String saveFilepath = "src/data.txt";
 
     private String name;
-    private Color color;
+    private String color; // /!\ On enregistre la couleur sous forme de String et non de Color, car on souhaite serialized notre PlayerModel, or Color n'implémente pas Serializable
     private int score;
+
+    public PlayerModel() {
+        this.name = null;
+        this.setColor(new Color(0,0,0,1));
+        this.score = 0;
+    }
 
     public PlayerModel(String name) {
         this.name = name;
-        this.color = new Color(0,0,0,1);
+        this.setColor(new Color(0,0,0,1));
         this.score = 0;
     }
 
     public PlayerModel(String name, Color color) {
         this.name = name;
-        this.color = color;
+        this.setColor(color);
         this.score = 0;
     }
 
@@ -35,12 +43,12 @@ public class PlayerModel extends Model implements Comparable<PlayerModel> {
 
         if (players.size() != 0 && players.containsKey(name)) {
             players.get(name).setColor(color);
-            System.out.println("oldPlayer");
+            System.out.println("Get an old player");
             return players.get(name);
         } else {
             PlayerModel newPlayer = new PlayerModel(name, color);
             players.put(name, newPlayer);
-            System.out.println("newPlayer");
+            System.out.println("Get a new player");
             return newPlayer;
         }
     }
@@ -101,6 +109,14 @@ public class PlayerModel extends Model implements Comparable<PlayerModel> {
         }
     }
 
+    @Override
+    public String toString() {
+        return "PlayerModel{" +
+                "name='" + name + '\'' +
+                ", color='" + color + '\'' +
+                ", score=" + score +
+                '}';
+    }
 
     /* ==================== */
     /*  GETTERS  & SETTERS  */
@@ -127,7 +143,7 @@ public class PlayerModel extends Model implements Comparable<PlayerModel> {
      * @return Couleur du joueur
      */
     public Color getColor() {
-        return color;
+        return Color.web(color);
     }
 
     /**
@@ -135,7 +151,7 @@ public class PlayerModel extends Model implements Comparable<PlayerModel> {
      * @param color Couleur à assigner au joueur
      */
     public void setColor(Color color) {
-        this.color = color;
+        this.color = color.toString();
     }
 
     /**
