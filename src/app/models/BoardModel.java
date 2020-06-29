@@ -24,9 +24,9 @@ public class BoardModel extends Model {
     private           int nbRow;
     private PawnModel[][] pawns;
 
-    public BoardModel() {
-        this.nbCol = 7;
-        this.nbRow = 6;
+    public BoardModel(int nbRow, int nbCol) {
+        this.nbCol = nbCol;
+        this.nbRow = nbRow;
         this.pawns = new PawnModel[nbCol][nbRow];
 
         this.generatePawns();

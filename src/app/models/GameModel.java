@@ -11,6 +11,7 @@ public class GameModel {
     }
 
     public void reinit() {
+
         this.setNbTour(0);
     }
 
