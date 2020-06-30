@@ -1,13 +1,11 @@
 package app.controllers;
 
 import app.models.MainModel;
-import app.models.Model;
 import app.views.ViewSkill;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.layout.GridPane;
 
 import java.net.URL;
@@ -42,7 +40,7 @@ public class MainController implements Initializable, Observer {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/fxml/"+viewName+".fxml"));
             Node newView = loader.load();
             ViewSkill newViewController = ((ViewSkill)loader.getController());
-            newViewController.setParentModel(mainModel);
+            newViewController.setMainModel(mainModel);
             mainContainer.add(newView, 0, 0);
             actualView = newView;
         }catch (Exception err){

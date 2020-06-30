@@ -6,10 +6,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
@@ -20,7 +18,7 @@ import static java.lang.Integer.valueOf;
 
 public class PlayerconfigController implements Initializable, ViewSkill {
 
-    MainModel parentModel;
+    MainModel mainModel;
     PlayerconfigModel viewModel;
     GameModel nextViewModel;
 
@@ -106,22 +104,25 @@ public class PlayerconfigController implements Initializable, ViewSkill {
             for(i = 0; i < nbPlayer; i++){
                 playerModel[i] = PlayerModel.getInstance(playerName[i], playerColor[i]);
             }
-            nextViewModel = parentModel.getGameModel();
+            nextViewModel = mainModel.getGameModel();
             nextViewModel.reinit();
             nextViewModel.setPlayers(playerModel);
             nextViewModel.setBoard(new BoardModel(nbRow, nbCol));
+
+            mainModel.setState(MainModel.MainState.GAME);
+            mainModel.notifyViews();
         }
         System.out.println("Valider");
 
     }
-    public void setParentModel(MainModel model){
-        this.parentModel = model;
+    public void setMainModel(MainModel model){
+        this.mainModel = model;
         this.init();
     }
 
     public void init(){
         System.out.println("------------------------------------");
-        viewModel = parentModel.getPlayerconfigModel();
+        viewModel = mainModel.getPlayerconfigModel();
         this.nbPlayer = viewModel.getNbPlayer();
         System.out.println("Nombre de joueur : "+nbPlayer);
 

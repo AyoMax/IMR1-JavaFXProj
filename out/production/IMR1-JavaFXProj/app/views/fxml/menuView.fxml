@@ -13,9 +13,11 @@
    <children>
       <VBox alignment="CENTER">
          <children>
+            <Label fx:id="title" text="Puissance 4" />
             <Button fx:id="2" mnemonicParsing="false" text="2 joueurs" onAction="#onClickPlayerNumberChoice" />
             <Button fx:id="3" mnemonicParsing="false" text="3 joueurs" onAction="#onClickPlayerNumberChoice" />
             <Button fx:id="4" mnemonicParsing="false" text="4 joueurs" onAction="#onClickPlayerNumberChoice" />
+            <Button fx:id="rankingBtn" mnemonicParsing="false" text="Classement" onAction="#onClickRankingButton" />
          </children>
       </VBox>
    </children>
