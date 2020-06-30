@@ -2,6 +2,7 @@ package app.controllers;
 
 import app.models.BoardModel;
 import app.models.PawnModel;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -54,6 +55,11 @@ public class BoardController implements Initializable, Observer {
                 }
             }
         }
+    }
+
+    @FXML
+    protected void onClickBoard(ActionEvent e){
+
     }
 
     /* ==================== */
