@@ -1,6 +1,7 @@
 package app.controllers;
 
 import app.models.BoardModel;
+import app.models.GameModel;
 import app.models.PawnModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -8,6 +9,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.GridPane;
+
+import javafx.scene.input.MouseEvent;
+import javafx.scene.shape.Circle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -17,6 +21,7 @@ import java.util.ResourceBundle;
 
 public class BoardController implements Initializable, Observer {
 
+    GameModel gameModel;
     BoardModel boardModel;
 
     @FXML
@@ -59,8 +64,17 @@ public class BoardController implements Initializable, Observer {
     }
 
     @FXML
-    protected void getOnMouseClicked(ActionEvent e){
-        System.out.println(e);
+    private void onClickBoard(MouseEvent e){
+        Node source = (Node)e.getTarget();
+        Integer colIndex = GridPane.getColumnIndex(source);
+        if(colIndex == null && source instanceof Circle){
+            colIndex = GridPane.getColumnIndex(((Circle)source).getParent());
+        }
+        if(colIndex != null){
+            boardModel.playerPlayColumn(gameModel.getCurrentPlayer(), colIndex);
+            gameModel.nextTurn();
+        }
+        System.out.println(colIndex);
     }
 
     /* ==================== */
@@ -71,8 +85,9 @@ public class BoardController implements Initializable, Observer {
         return boardModel;
     }
 
-    public void setBoardModel(BoardModel boardModel) {
-        this.boardModel = boardModel;
+    public void setBoardModel(GameModel gameModel) {
+        this.gameModel = gameModel;
+        this.boardModel = gameModel.getBoard();
         this.boardModel.addView(this);
         this.boardModel.notifyViews();
         refresh();

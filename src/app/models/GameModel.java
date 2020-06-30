@@ -7,12 +7,27 @@ public class GameModel extends Model{
     private int             nbTour;
 
     public GameModel() {
+        this.nbTour = 1;
+    }
 
+    public int getNbPlayer(){
+        return players.length;
+    }
+
+    public PlayerModel getCurrentPlayer(){
+        int nbPlayer = getNbPlayer();
+
+        System.out.println(nbPlayer);
+        System.out.println((nbTour-1) % nbPlayer);
+        return players[(nbTour-1) % nbPlayer];
+    }
+
+    public void nextTurn(){
+        this.nbTour++;
     }
 
     public void reinit() {
-
-        this.setNbTour(0);
+        this.setNbTour(1);
     }
 
     /* ==================== */
