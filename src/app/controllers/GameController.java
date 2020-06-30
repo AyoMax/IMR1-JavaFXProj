@@ -9,6 +9,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
 import javax.imageio.plugins.tiff.GeoTIFFTagSet;
@@ -23,7 +24,7 @@ public class GameController implements Initializable, ViewSkill, Observer {
     GameModel viewModel;
 
     @FXML
-    AnchorPane boardContainer;
+    GridPane boardContainer;
 
     @FXML
     VBox playerlistContainer;
@@ -42,7 +43,7 @@ public class GameController implements Initializable, ViewSkill, Observer {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/fxml/boardView.fxml"));
             Node boardNode     = loader.load();
             BoardController boardController = loader.getController();
-            boardController.setBoardModel(viewModel.getBoard());
+            boardController.setBoardModel(viewModel);
             boardContainer.getChildren().add(boardNode);
             System.out.println("Affichage du plateau ?.");
         }catch(Exception err){

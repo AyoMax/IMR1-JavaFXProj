@@ -10,7 +10,7 @@
     <children>
         <VBox alignment="CENTER">
             <children>
-                <Label text="Classement" />
+                <Label fx:id="title" text="Classement" />
                 <VBox fx:id="playerRankingContainer" alignment="CENTER">
                 </VBox>
                 <Button fx:id="rankingBtn" mnemonicParsing="false" text="Jouer" onAction="#onClickMenuButton" />

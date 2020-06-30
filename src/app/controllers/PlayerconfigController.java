@@ -37,6 +37,11 @@ public class PlayerconfigController implements Initializable, ViewSkill {
     @FXML
     private Spinner<Integer> colSpinner;
 
+    @FXML
+    protected void onClickReturn(ActionEvent e){
+        mainModel.setState(MainModel.MainState.MENU);
+        mainModel.notifyViews();
+    }
 
     @FXML
     protected void onClickValidate(ActionEvent e){

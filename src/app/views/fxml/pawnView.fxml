@@ -1,6 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 
-<?import javafx.scene.shape.Circle?>
-
-<Circle xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.PawnController" fx:id="circle" fill="DODGERBLUE" layoutX="1.0" layoutY="20.0" radius="5.0" stroke="BLACK" strokeType="INSIDE" />
+<AnchorPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.PawnController">
+    <Circle fx:id="circle" fill="WHITE" layoutX="15.0" layoutY="15.0" radius="15.0" stroke="BLACK" strokeType="INSIDE" translateX="2.5" translateY="2.5" />
+   <padding>
+      <Insets bottom="2.5" left="2.5" right="2.5" top="2.5" />
+   </padding>
+</AnchorPane>

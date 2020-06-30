@@ -4,7 +4,11 @@
 #title{
     -fx-font-size: 28px;
     -fx-font-weight: 700;
-    -fx-marg
+}
+Label {
+     -fx-font-weight: 700;
+ }
+#errorLabel{
 }
 
 Button{
@@ -20,7 +24,10 @@ Button{
     -fx-font-size: 14px;
 }
 Button:hover{
-    -fx-background-color: aquamarine;
+    -fx-background-color:
+        #3c7fb1,
+        linear-gradient(#fafdfe, #e8f5fc),
+        linear-gradient(#fbf7fe 0%, #eaf1fd 49%, #cff7fe 50%, #b8eaf6 100%);
 }
 
 boardContainer{
