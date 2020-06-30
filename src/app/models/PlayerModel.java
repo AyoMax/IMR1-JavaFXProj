@@ -3,6 +3,8 @@ package app.models;
 import javafx.scene.paint.Color;
 
 import java.io.*;
+import java.util.Arrays;
+import java.util.Comparator;
 import java.util.HashMap;
 
 public class PlayerModel extends Model implements Comparable<PlayerModel>, Serializable {
@@ -107,6 +109,38 @@ public class PlayerModel extends Model implements Comparable<PlayerModel>, Seria
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    static public String[][] getRankData() {
+        PlayerModel[] players = sortPlayer();
+        String[][] res = new String[3][players.length];
+
+        for (int i = 0; i < players.length; i++) {
+            res[0][i] = String.valueOf(i);
+            res[1][i] = players[i].getName();
+            res[2][i] = String.valueOf(players[i].getScore());
+        }
+
+        return res;
+    }
+
+    /**
+     * Retourne les joueurs triés par nombre de victoire descendant
+     * @return Joueurs triés par nombre de victoire descendant
+     */
+    static public PlayerModel[] sortPlayer() {
+        // Récupération de tous les joueurs enregistrés
+        PlayerModel[] players = (PlayerModel[]) PlayerModel.players.values().toArray();
+
+        // Trie des joueurs par score
+        Arrays.sort(players, new Comparator<>() {
+            @Override
+            public int compare(PlayerModel player1, PlayerModel player2) {
+                return player1.compareTo(player2);
+            }
+        });
+
+        return players;
     }
 
     @Override

@@ -14,7 +14,7 @@ import java.util.Observable;
 import java.util.Observer;
 import java.util.ResourceBundle;
 
-public class PawnController implements Initializable, Observer, ViewSkill {
+public class PawnController implements Initializable, Observer {
 
     private static final Color DEFAULTCOLOR = Color.WHITE;
 
@@ -23,16 +23,14 @@ public class PawnController implements Initializable, Observer, ViewSkill {
     @FXML
     private Circle circle;
 
+    /* =========== */
+    /*  FONCTIONS  */
+    /* =========== */
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
     }
-
-    @Override
-    public void setMainModel(MainModel model) {
-
-    }
-
 
     @Override
     public void update(Observable observable, Object o) {

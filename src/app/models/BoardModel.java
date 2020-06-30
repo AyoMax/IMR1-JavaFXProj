@@ -146,6 +146,19 @@ public class BoardModel extends Model {
         return compteur >= 4;
     }
 
+    /**
+     * Vérifie si tout les pions du plateau ont été joués.
+     * @return true si tout les pions on été joués, false sinon
+     */
+    public boolean checkFull() {
+        for (PawnModel pawnCol[] : this.pawns) {
+            if (pawnCol[0].getEtat() != PawnModel.EtatPion.PLAYED) {
+                return false;
+            }
+        }
+        return true;
+    }
+
     /* ==================== */
     /*  GETTERS  & SETTERS  */
     /* ==================== */
