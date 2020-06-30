@@ -3,13 +3,11 @@ package app.models;
 import javafx.scene.paint.Color;
 
 import java.io.*;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.HashMap;
+import java.util.*;
 
 public class PlayerModel extends Model implements Comparable<PlayerModel>, Serializable {
 
-    static final long serialVersionUID = 225;
+    static private final long serialVersionUID = 225;
 
     static public HashMap<String, PlayerModel> players = new HashMap<>();
     static public String saveFilepath = "src/data.txt";
@@ -41,7 +39,7 @@ public class PlayerModel extends Model implements Comparable<PlayerModel>, Seria
     /* =========== */
 
     static public PlayerModel getInstance(String name, Color color) {
-        if (players.size() == 0) initJoueursFromFile();
+        if (players.size() == 0) initPlayersFromFile();
 
         if (players.size() != 0 && players.containsKey(name)) {
             players.get(name).setColor(color);
@@ -55,16 +53,24 @@ public class PlayerModel extends Model implements Comparable<PlayerModel>, Seria
         }
     }
 
+    /**
+     * Additionne au score du joueur un entier.
+     * @param i Entier à additionner au score du joueur
+     */
+    public void increaseScore(int i) {
+        this.setScore(score + i);
+    }
+
     @Override
     public int compareTo(PlayerModel player) {
-        return this.score - player.getScore();
+        return player.getScore() - this.score;
     }
 
     /* DATA FILE MANAGEMENT */
     /**
      * Récupère les joueurs dans le fichier de sauvegarde
      */
-    static private void initJoueursFromFile() {
+    static private void initPlayersFromFile() {
         FileInputStream fin = null;
         ObjectInputStream oin = null;
 
@@ -111,29 +117,16 @@ public class PlayerModel extends Model implements Comparable<PlayerModel>, Seria
         }
     }
 
-    static public String[][] getRankData() {
-        PlayerModel[] players = sortPlayer();
-        String[][] res = new String[3][players.length];
-
-        for (int i = 0; i < players.length; i++) {
-            res[0][i] = String.valueOf(i);
-            res[1][i] = players[i].getName();
-            res[2][i] = String.valueOf(players[i].getScore());
-        }
-
-        return res;
-    }
-
     /**
      * Retourne les joueurs triés par nombre de victoire descendant
      * @return Joueurs triés par nombre de victoire descendant
      */
-    static public PlayerModel[] sortPlayer() {
+    static public ArrayList<PlayerModel> sortPlayer() {
         // Récupération de tous les joueurs enregistrés
-        PlayerModel[] players = (PlayerModel[]) PlayerModel.players.values().toArray();
+        ArrayList<PlayerModel> players = new ArrayList<>(PlayerModel.players.values());
 
         // Trie des joueurs par score
-        Arrays.sort(players, new Comparator<>() {
+        players.sort(new Comparator<>() {
             @Override
             public int compare(PlayerModel player1, PlayerModel player2) {
                 return player1.compareTo(player2);
@@ -155,6 +148,15 @@ public class PlayerModel extends Model implements Comparable<PlayerModel>, Seria
     /* ==================== */
     /*  GETTERS  & SETTERS  */
     /* ==================== */
+
+    /**
+     * Retourne les joueurs enregistrés dans le fichier de sauvegarde.
+     * @return Joueurs enregistrés dans le fichier de sauvegarde
+     */
+    static public HashMap<String, PlayerModel> getPlayers() {
+        if (players.size() == 0) initPlayersFromFile();
+        return players;
+    }
 
     /**
      * Retourne le nom du joueur.

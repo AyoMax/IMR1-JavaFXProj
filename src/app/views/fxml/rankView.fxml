@@ -13,14 +13,9 @@
         <VBox alignment="CENTER">
             <children>
                 <Label fx:id="title" text="Classement" />
-            <ScrollPane prefHeight="200.0" prefWidth="200.0">
+            <ScrollPane>
                <content>
                   <TableView fx:id="tableView">
-                    <columns>
-                        <TableColumn text="Place" />
-                      <TableColumn text="Joueur" />
-                      <TableColumn text="Score" />
-                    </columns>
                   </TableView>
                </content>
             </ScrollPane>

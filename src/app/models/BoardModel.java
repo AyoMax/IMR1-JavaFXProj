@@ -95,6 +95,7 @@ public class BoardModel extends Model {
             // Si 4 pions sont alignés dans une direction données à partir du pion joué,
             //      alors le joueur a gagné
             if (checkDirection(cPlayer, cCol, cRow, direction)) {
+                cPlayer.increaseScore(1);
                 return true;
             }
         }

@@ -8,7 +8,9 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
 import java.util.Arrays;
@@ -19,35 +21,39 @@ public class RankController implements Initializable, ViewSkill {
     private MainModel mainModel;
 
     @FXML
-    TableView<String> tableView;
+    TableView<PlayerModel> tableView;
 
     /* =========== */
     /*  FONCTIONS  */
     /* =========== */
 
+    public void init() {
+        if (PlayerModel.getPlayers().size() > 0) {
+            ObservableList<PlayerModel> data = FXCollections.observableArrayList();
+            data.addAll(PlayerModel.sortPlayer());
+            tableView.setItems(data);
+
+            // Définition de la colonne des rangs
+            TableColumn<String, String> rankCol = new TableColumn<>("Classement");
+
+            // Définition de la colonne des noms
+            TableColumn<PlayerModel, String> nameCol  = new TableColumn<>("Joueur");
+            nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+            // Définition de la colonne des scores
+            TableColumn<PlayerModel, String> scoreCol = new TableColumn<>("Score");
+            scoreCol.setCellValueFactory(new PropertyValueFactory<>("score"));
+
+            tableView.getColumns().setAll(nameCol, scoreCol);
+            tableView.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+        } else {
+            System.out.println("Aucun joueurs enregistrés");
+        }
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        String[][] tableDatas = PlayerModel.getRankData();
 
-        ObservableList<String[]> data = FXCollections.observableArrayList();
-        data.addAll(Arrays.asList(tableDatas));
-        data.remove(0);//remove titles from data
-
-        /*
-        for (int i = 0; i < staffArray[0].length; i++) {
-            TableColumn tc = new TableColumn(staffArray[0][i]);
-            final int colNo = i;
-            tc.setCellValueFactory(new Callback<CellDataFeatures<String[], String>, ObservableValue<String>>() {
-                @Override
-                public ObservableValue<String> call(CellDataFeatures<String[], String> p) {
-                    return new SimpleStringProperty((p.getValue()[colNo]));
-                }
-            });
-            tc.setPrefWidth(90);
-            table.getColumns().add(tc);
-        }*/
-
-        // tableView.setItems(data);
     }
 
     public void onClickMenuButton(ActionEvent actionEvent) {
@@ -62,5 +68,6 @@ public class RankController implements Initializable, ViewSkill {
     @Override
     public void setMainModel(MainModel model) {
         this.mainModel = model;
+        this.init();
     }
 }

@@ -42,6 +42,7 @@ public class GameModel extends Model{
     public PlayerModel getWinner() {
         return winner;
     }
+
     /**
      * Retourne le gagnant de la partie
      * @return gagnant de la partie
@@ -49,6 +50,7 @@ public class GameModel extends Model{
     public void setWinner(PlayerModel winner){
         this.winner = winner;
     }
+
     /**
      * Retourne le plateau de la partie
      * @return Plateau de la partie
