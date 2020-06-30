@@ -5,7 +5,7 @@ import app.views.ViewSkill;
 import javafx.event.ActionEvent;
 
 public class RankController implements ViewSkill {
-    MainModel mainModel;
+    private MainModel mainModel;
 
     @Override
     public void setMainModel(MainModel model) {

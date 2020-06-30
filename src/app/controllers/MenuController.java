@@ -16,9 +16,9 @@ import static java.lang.Integer.valueOf;
 
 public class MenuController implements Initializable, ViewSkill {
 
-    MainModel parentModel;
-    Model viewModel;
-    PlayerconfigModel nextViewModel;
+    private MainModel parentModel;
+    private Model viewModel;
+    private PlayerconfigModel nextViewModel;
 
     @FXML
     protected void onClickPlayerNumberChoice(ActionEvent e){

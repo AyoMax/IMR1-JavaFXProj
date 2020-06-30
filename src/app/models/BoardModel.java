@@ -115,37 +115,40 @@ public class BoardModel extends Model {
 
         // Vérification à droite/en bas du pion d'origine
         int i = 1;
-        System.out.println("B1 Col : "+ (origineCol + i * direction.decalCol));
-        System.out.println("B1 Row : "+ (origineCol + i * direction.decalRow));
         while ((origineCol + i * direction.decalCol) >= 0
                 && (origineRow + i * direction.decalRow) >= 0
                 && pawns.length > (origineCol + i * direction.decalCol)
                 && pawns[origineCol + i * direction.decalCol].length > (origineRow + i * direction.decalRow)
                 && pawns[origineCol + i * direction.decalCol][origineRow + i * direction.decalRow].getJoueur() == cPlayer) {
             i++;
-            System.out.println("B1 Col : "+ (origineCol + i * direction.decalCol));
-            System.out.println("B1 Row : "+ (origineCol + i * direction.decalRow));
             compteur++;
         }
 
         // Vérification à gauche/en haut du pion d'origne
         int j = 1;
-        System.out.println("B2 Col : "+ (origineCol + i * direction.decalCol));
-        System.out.println("B2 Row : "+ (origineCol + i * direction.decalRow));
         while ((origineCol - j * direction.decalCol) >= 0
                 && (origineRow - j * direction.decalRow) >= 0
                 && pawns.length > (origineCol - j * direction.decalCol)
                 && pawns[origineCol - j * direction.decalCol].length > (origineRow - j * direction.decalRow)
                 && pawns[origineCol - j * direction.decalCol][origineRow - j * direction.decalRow].getJoueur() == cPlayer) {
             j++;
-            System.out.println("B2 Col : "+ (origineCol + i * direction.decalCol));
-            System.out.println("B2 Row : "+ (origineCol + i * direction.decalRow));
             compteur++;
         }
 
         return compteur >= 4;
     }
-
+    /**
+     * Vérifie si tout les pions du plateau ont été joués.
+     * @return true si tout les pions on été joués, false sinon
+     */
+    public boolean checkFull() {
+        for (PawnModel pawnCol[] : this.pawns) {
+            if (pawnCol[0].getEtat() != PawnModel.EtatPion.PLAYED) {
+                return false;
+            }
+        }
+        return true;
+    }
     /* ==================== */
     /*  GETTERS  & SETTERS  */
     /* ==================== */

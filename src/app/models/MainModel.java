@@ -47,6 +47,10 @@ public class MainModel extends Model {
         return this.rankModel;
     }
 
+    public void restGameModel(){
+        this.gameModel = new GameModel();
+    }
+
 
     /* ==================== */
     /*  GETTERS  & SETTERS  */
