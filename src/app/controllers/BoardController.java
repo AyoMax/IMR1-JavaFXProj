@@ -58,7 +58,7 @@ public class BoardController implements Initializable, Observer {
     }
 
     @FXML
-    protected void onClickBoard(ActionEvent e){
+    protected void getOnMouseClicked(ActionEvent e){
         System.out.println(e);
     }
 
