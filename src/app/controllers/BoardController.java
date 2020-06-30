@@ -59,7 +59,7 @@ public class BoardController implements Initializable, Observer {
 
     @FXML
     protected void onClickBoard(ActionEvent e){
-
+        System.out.println(e);
     }
 
     /* ==================== */
