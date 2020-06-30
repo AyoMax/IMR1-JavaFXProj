@@ -3,6 +3,7 @@ package app.controllers;
 import app.models.BoardModel;
 import app.models.GameModel;
 import app.models.PawnModel;
+import app.models.PlayerModel;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -21,11 +22,11 @@ import java.util.ResourceBundle;
 
 public class BoardController implements Initializable, Observer {
 
-    GameModel gameModel;
-    BoardModel boardModel;
+    private GameModel gameModel;
+    private BoardModel boardModel;
 
     @FXML
-    GridPane gridPane;
+    private GridPane gridPane;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -65,16 +66,31 @@ public class BoardController implements Initializable, Observer {
 
     @FXML
     private void onClickBoard(MouseEvent e){
-        Node source = (Node)e.getTarget();
-        Integer colIndex = GridPane.getColumnIndex(source);
-        if(colIndex == null && source instanceof Circle){
-            colIndex = GridPane.getColumnIndex(((Circle)source).getParent());
+        // Vérification qu'il n'y ait pas de vainqueur pour continuer la partie (Provisoire --> on essaiera de unbind l' eventHandler
+        if(gameModel.getWinner() == null){
+            Node source = (Node)e.getTarget();
+            Integer colIndex = GridPane.getColumnIndex(source);
+            if(colIndex == null && source instanceof Circle){
+                colIndex = GridPane.getColumnIndex(((Circle)source).getParent());
+            }
+            if(colIndex != null){
+                try{
+                    PlayerModel currentPlayer = gameModel.getCurrentPlayer();
+                    Boolean checkVictory = boardModel.playerPlayColumn(currentPlayer, colIndex);
+                    System.out.println(checkVictory);
+                    if(checkVictory){
+                        gameModel.setWinner(currentPlayer);
+                        gridPane.removeEventHandler(MouseEvent.MOUSE_CLICKED, this::onClickBoard);
+                    }else{
+                        gameModel.nextTurn();
+                    }
+                    gameModel.notifyViews();
+                }catch(Error err){
+                    System.out.println("Colonne pleine.");
+                }
+            }
         }
-        if(colIndex != null){
-            boardModel.playerPlayColumn(gameModel.getCurrentPlayer(), colIndex);
-            gameModel.nextTurn();
-        }
-        System.out.println(colIndex);
+
     }
 
     /* ==================== */

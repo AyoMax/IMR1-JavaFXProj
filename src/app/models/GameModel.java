@@ -6,6 +6,8 @@ public class GameModel extends Model{
     private PlayerModel[]   players;
     private int             nbTour;
 
+    private PlayerModel winner;
+
     public GameModel() {
         this.nbTour = 1;
     }
@@ -33,7 +35,20 @@ public class GameModel extends Model{
     /* ==================== */
     /*  GETTERS  & SETTERS  */
     /* ==================== */
-
+    /**
+     * Retourne le gagnant de la partie
+     * @return gagnant de la partie
+     */
+    public PlayerModel getWinner() {
+        return winner;
+    }
+    /**
+     * Retourne le gagnant de la partie
+     * @return gagnant de la partie
+     */
+    public void setWinner(PlayerModel winner){
+        this.winner = winner;
+    }
     /**
      * Retourne le plateau de la partie
      * @return Plateau de la partie

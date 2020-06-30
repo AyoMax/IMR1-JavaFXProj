@@ -18,18 +18,18 @@ import static java.lang.Integer.valueOf;
 
 public class PlayerconfigController implements Initializable, ViewSkill {
 
-    MainModel mainModel;
-    PlayerconfigModel viewModel;
-    GameModel nextViewModel;
+    private MainModel mainModel;
+    private PlayerconfigModel viewModel;
+    private GameModel nextViewModel;
 
-    int nbPlayer;
-    VBox[] playerconfigNode;
-
-    @FXML
-    GridPane playerInitContainer;
+    private int nbPlayer;
+    private VBox[] playerconfigNode;
 
     @FXML
-    Label errorLabel;
+    private GridPane playerInitContainer;
+
+    @FXML
+    private Label errorLabel;
 
     @FXML
     private Spinner<Integer> rowSpinner;
@@ -139,8 +139,10 @@ public class PlayerconfigController implements Initializable, ViewSkill {
                 ((Label)playerconfigNode[i].getChildren().get(0)).setText("Joueur : "+(i+1));
                 playerInitContainer.add( playerconfigNode[i], i, 0);
             }
-            rowSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(4, 30));
-            colSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(4, 30));
+            rowSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(4, 20));
+            colSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(4, 20));
+            rowSpinner.getValueFactory().setValue(6);
+            colSpinner.getValueFactory().setValue(7);
         }catch(Exception err){
             System.out.println("Plantage des partials");
             System.out.println(err);
