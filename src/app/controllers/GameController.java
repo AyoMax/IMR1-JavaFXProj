@@ -26,7 +26,6 @@ public class GameController implements Initializable, ViewSkill, Observer {
     private MainModel mainModel;
     private GameModel viewModel;
 
-
     @FXML
     private Label nbTourLabel;
 

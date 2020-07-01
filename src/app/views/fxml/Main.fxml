@@ -2,8 +2,8 @@
 
 <?import javafx.scene.layout.*?>
 
-<GridPane fx:id="mainContainer" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" stylesheets="@../css/Main.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.MainController">
+<BorderPane  fx:id="mainContainer"  stylesheets="@../css/Main.css" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.MainController">
     <children>
 
     </children>
-</GridPane>
+</BorderPane >

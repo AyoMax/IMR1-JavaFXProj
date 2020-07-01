@@ -5,8 +5,12 @@ import app.views.ViewSkill;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.util.Observable;
@@ -20,7 +24,7 @@ public class MainController implements Initializable, Observer {
     private Node actualView;
 
     @FXML
-    private GridPane mainContainer;
+    private BorderPane mainContainer;
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
@@ -41,7 +45,7 @@ public class MainController implements Initializable, Observer {
             Node newView = loader.load();
             ViewSkill newViewController = ((ViewSkill)loader.getController());
             newViewController.setMainModel(mainModel);
-            mainContainer.add(newView, 0, 0);
+            mainContainer.setCenter(newView);
             actualView = newView;
         }catch (Exception err){
             System.out.println("Problème de chargement de View en fonction de l'état du MainModel.");

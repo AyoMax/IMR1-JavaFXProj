@@ -5,7 +5,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.PlayerconfigController">
+<BorderPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.PlayerconfigController">
+     <center>
       <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <Label fx:id="errorLabel" text="" textFill="#dd0000">
          <VBox.margin>
@@ -14,10 +15,10 @@
          <font>
             <Font size="14.0" />
          </font></Label>
-            <GridPane fx:id="playerInitContainer">
+            <HBox alignment="CENTER" fx:id="playerInitContainer">
          <opaqueInsets>
             <Insets />
-         </opaqueInsets></GridPane>
+         </opaqueInsets></HBox>
             <HBox alignment="CENTER">
                   <Label text="Nombre de lignes">
             <HBox.margin>
@@ -54,4 +55,5 @@
       </Button>
       <Button mnemonicParsing="false" onAction="#onClickReturn" text="Retour" />
       </VBox>
-</AnchorPane>
+     </center>
+</BorderPane>

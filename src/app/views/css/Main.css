@@ -8,8 +8,7 @@
 Label {
      -fx-font-weight: 700;
  }
-#errorLabel{
-}
+
 
 Button{
     -fx-background-color:
@@ -35,6 +34,7 @@ boardContainer{
 }
 
 #splitpane{
+    -fx-background-color: antiquewhite;
     -fx-min-width: 100%;
     -fx-min-height: 100%;
 }

@@ -2,10 +2,5 @@
 
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.BoardController">
-   <children>
-      <GridPane fx:id="gridPane" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onClickBoard" style="-fx-background-color: blue;">
 
-      </GridPane>
-   </children>
-</AnchorPane>
+<GridPane xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.BoardController" fx:id="gridPane" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#onClickBoard" style="-fx-background-color: blue;"></GridPane>

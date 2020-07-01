@@ -8,6 +8,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 
@@ -26,7 +27,7 @@ public class PlayerconfigController implements Initializable, ViewSkill {
     private VBox[] playerconfigNode;
 
     @FXML
-    private GridPane playerInitContainer;
+    private HBox playerInitContainer;
 
     @FXML
     private Label errorLabel;
@@ -137,7 +138,7 @@ public class PlayerconfigController implements Initializable, ViewSkill {
             for(var i = 0; i < nbPlayer; i++){
                 playerconfigNode[i] = FXMLLoader.load(getClass().getResource("../views/fxml/playerconfigPartials.fxml"));
                 ((Label)playerconfigNode[i].getChildren().get(0)).setText("Joueur : "+(i+1));
-                playerInitContainer.add( playerconfigNode[i], i, 0);
+                playerInitContainer.getChildren().add( playerconfigNode[i]);
             }
             rowSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(4, 20));
             colSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(4, 20));
