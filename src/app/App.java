@@ -13,7 +13,7 @@ public class App extends Application {
     public void start(Stage primaryStage) throws Exception{
         BorderPane root = FXMLLoader.load(getClass().getResource("views/fxml/Main.fxml"));
         primaryStage.setTitle("Puissance 4");
-        primaryStage.setScene(new Scene(root, 500, 500));
+        primaryStage.setScene(new Scene(root, 1100, 800));
         primaryStage.show();
     }
 

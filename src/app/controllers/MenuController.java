@@ -43,6 +43,10 @@ public class MenuController implements Initializable, ViewSkill {
         parentModel.notifyViews();
     }
 
+    @FXML
+    protected void onClickExit(ActionEvent e){
+        System.exit(0);
+    }
 
     public void setMainModel(MainModel model){
         this.parentModel = model;

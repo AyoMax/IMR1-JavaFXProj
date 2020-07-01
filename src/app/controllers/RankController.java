@@ -33,15 +33,12 @@ public class RankController implements Initializable, ViewSkill {
             data.addAll(PlayerModel.sortPlayer());
             tableView.setItems(data);
 
-            // Définition de la colonne des rangs
-            TableColumn<String, String> rankCol = new TableColumn<>("Classement");
-
             // Définition de la colonne des noms
             TableColumn<PlayerModel, String> nameCol  = new TableColumn<>("Joueur");
             nameCol.setCellValueFactory(new PropertyValueFactory<>("name"));
 
             // Définition de la colonne des scores
-            TableColumn<PlayerModel, String> scoreCol = new TableColumn<>("Score");
+            TableColumn<PlayerModel, String> scoreCol = new TableColumn<>("Nombre de victoire");
             scoreCol.setCellValueFactory(new PropertyValueFactory<>("score"));
 
             tableView.getColumns().setAll(nameCol, scoreCol);
