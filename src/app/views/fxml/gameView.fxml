@@ -8,7 +8,7 @@
 
 <SplitPane fx:id="splitpane" dividerPositions="0.8" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.GameController">
    <items>
-      <GridPane fx:id="boardContainer" alignment="CENTER" />
+      <BorderPane fx:id="boardContainer" />
       <VBox fx:id="playerlistContainer" alignment="CENTER" minHeight="-Infinity" minWidth="-Infinity">
          <children>
             <Label fx:id="nbTourLabel" text="">

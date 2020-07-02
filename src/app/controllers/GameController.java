@@ -12,6 +12,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
@@ -39,7 +40,7 @@ public class GameController implements Initializable, ViewSkill, Observer {
     private Circle playerColor;
 
     @FXML
-    private GridPane boardContainer;
+    private BorderPane boardContainer;
 
     @FXML
     private VBox playerlistContainer;
@@ -67,7 +68,7 @@ public class GameController implements Initializable, ViewSkill, Observer {
             Node boardNode     = loader.load();
             BoardController boardController = loader.getController();
             boardController.setBoardModel(viewModel);
-            boardContainer.getChildren().add(boardNode);
+            boardContainer.setCenter(boardNode);
             System.out.println("Affichage du plateau ?.");
             refresh();
         }catch(Exception err){
