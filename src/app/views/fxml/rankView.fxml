@@ -4,24 +4,22 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.RankController">
-    <center>
-        <VBox alignment="CENTER">
-            <children>
-                <Label fx:id="title" text="Classement" />
-                <HBox alignment="CENTER">
-                    <ScrollPane>
-                       <content>
-                          <TableView fx:id="tableView">
-                          </TableView>
-                       </content>
-                    </ScrollPane>
-                </HBox>
-                <Button fx:id="rankingBtn" mnemonicParsing="false" onAction="#onClickMenuButton" text="Jouer">
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin></Button>
-            </children>
-        </VBox>
-    </center>
-</BorderPane>
+
+<VBox alignment="CENTER" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.RankController">
+    <children>
+        <Label fx:id="title" text="Classement" />
+        <HBox alignment="CENTER">
+            <ScrollPane>
+               <content>
+                  <TableView fx:id="tableView">
+                  </TableView>
+               </content>
+            </ScrollPane>
+        </HBox>
+        <Button fx:id="rankingBtn" mnemonicParsing="false" onAction="#onClickMenuButton" text="Jouer">
+       <VBox.margin>
+          <Insets top="15.0" />
+       </VBox.margin></Button>
+    </children>
+</VBox>
+

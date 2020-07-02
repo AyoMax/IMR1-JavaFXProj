@@ -5,55 +5,53 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<BorderPane xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.PlayerconfigController">
-     <center>
-      <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <Label fx:id="errorLabel" text="" textFill="#dd0000">
-         <VBox.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
-         </VBox.margin>
-         <font>
-            <Font size="14.0" />
-         </font></Label>
-            <HBox alignment="CENTER" fx:id="playerInitContainer">
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets></HBox>
-            <HBox alignment="CENTER">
-                  <Label text="Nombre de lignes">
-            <HBox.margin>
-               <Insets right="10.0" />
-            </HBox.margin>
-         </Label>
-                  <Spinner fx:id="rowSpinner">
-            <HBox.margin>
-               <Insets />
-            </HBox.margin>
-         </Spinner>
-         <VBox.margin>
-            <Insets bottom="10.0" left="17.0" />
-         </VBox.margin>
-         <opaqueInsets>
-            <Insets />
-         </opaqueInsets>
-            </HBox>
-            <HBox alignment="CENTER">
-                  <Label text="Nombre de colonnes">
-            <HBox.margin>
-               <Insets right="10.0" />
-            </HBox.margin>
-         </Label>
-                  <Spinner fx:id="colSpinner" />
-         <VBox.margin>
-            <Insets />
-         </VBox.margin>
-            </HBox>
-            <Button fx:id="validateBtn" mnemonicParsing="false" onAction="#onClickValidate" text="Commencer !">
-         <VBox.margin>
-            <Insets bottom="10.0" left="10.0" right="10.0" top="15.0" />
-         </VBox.margin>
-      </Button>
-      <Button mnemonicParsing="false" onAction="#onClickReturn" text="Retour" />
-      </VBox>
-     </center>
-</BorderPane>
+
+<VBox xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.PlayerconfigController" alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+    <Label fx:id="errorLabel" text="" textFill="#dd0000">
+ <VBox.margin>
+    <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+ </VBox.margin>
+ <font>
+    <Font size="14.0" />
+ </font></Label>
+    <HBox alignment="CENTER" fx:id="playerInitContainer">
+ <opaqueInsets>
+    <Insets />
+ </opaqueInsets></HBox>
+    <HBox alignment="CENTER">
+          <Label text="Nombre de lignes">
+    <HBox.margin>
+       <Insets right="10.0" />
+    </HBox.margin>
+ </Label>
+          <Spinner fx:id="rowSpinner">
+    <HBox.margin>
+       <Insets />
+    </HBox.margin>
+ </Spinner>
+ <VBox.margin>
+    <Insets bottom="10.0" left="17.0" />
+ </VBox.margin>
+ <opaqueInsets>
+    <Insets />
+ </opaqueInsets>
+    </HBox>
+    <HBox alignment="CENTER">
+          <Label text="Nombre de colonnes">
+    <HBox.margin>
+       <Insets right="10.0" />
+    </HBox.margin>
+ </Label>
+          <Spinner fx:id="colSpinner" />
+ <VBox.margin>
+    <Insets />
+ </VBox.margin>
+    </HBox>
+    <Button fx:id="validateBtn" mnemonicParsing="false" onAction="#onClickValidate" text="Commencer !">
+ <VBox.margin>
+    <Insets bottom="10.0" left="10.0" right="10.0" top="15.0" />
+ </VBox.margin>
+</Button>
+<Button mnemonicParsing="false" onAction="#onClickReturn" text="Retour" />
+</VBox>
+
