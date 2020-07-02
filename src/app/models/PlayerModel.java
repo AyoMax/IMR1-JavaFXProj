@@ -9,12 +9,22 @@ public class PlayerModel extends Model implements Comparable<PlayerModel>, Seria
 
     static private final long serialVersionUID = 225;
 
+    /**
+     * Map des joueurs du jeu, indexés par leur nom.
+     */
     static public HashMap<String, PlayerModel> players = new HashMap<>();
+    /**
+     * Chemin vers le fichier d'enregistrement des joueurs.
+     */
     static public String saveFilepath = "src/data.txt";
 
     private String name;
     private String color; // /!\ On enregistre la couleur sous forme de String et non de Color, car on souhaite serialized notre PlayerModel, or Color n'implémente pas Serializable
     private int score;
+
+    /* =============== */
+    /*  CONSTRUCTEURS  */
+    /* =============== */
 
     public PlayerModel() {
         this.name = null;
@@ -66,6 +76,34 @@ public class PlayerModel extends Model implements Comparable<PlayerModel>, Seria
         return player.getScore() - this.score;
     }
 
+    /**
+     * Retourne les joueurs triés par nombre de victoire descendant
+     * @return Joueurs triés par nombre de victoire descendant
+     */
+    static public ArrayList<PlayerModel> sortPlayer() {
+        // Récupération de tous les joueurs enregistrés
+        ArrayList<PlayerModel> players = new ArrayList<>(PlayerModel.players.values());
+
+        // Trie des joueurs par score
+        players.sort(new Comparator<>() {
+            @Override
+            public int compare(PlayerModel player1, PlayerModel player2) {
+                return player1.compareTo(player2);
+            }
+        });
+
+        return players;
+    }
+
+    @Override
+    public String toString() {
+        return "PlayerModel{" +
+                "name='" + name + '\'' +
+                ", color='" + color + '\'' +
+                ", score=" + score +
+                '}';
+    }
+
     /* DATA FILE MANAGEMENT */
     /**
      * Récupère les joueurs dans le fichier de sauvegarde
@@ -115,34 +153,6 @@ public class PlayerModel extends Model implements Comparable<PlayerModel>, Seria
         } catch (IOException e) {
             e.printStackTrace();
         }
-    }
-
-    /**
-     * Retourne les joueurs triés par nombre de victoire descendant
-     * @return Joueurs triés par nombre de victoire descendant
-     */
-    static public ArrayList<PlayerModel> sortPlayer() {
-        // Récupération de tous les joueurs enregistrés
-        ArrayList<PlayerModel> players = new ArrayList<>(PlayerModel.players.values());
-
-        // Trie des joueurs par score
-        players.sort(new Comparator<>() {
-            @Override
-            public int compare(PlayerModel player1, PlayerModel player2) {
-                return player1.compareTo(player2);
-            }
-        });
-
-        return players;
-    }
-
-    @Override
-    public String toString() {
-        return "PlayerModel{" +
-                "name='" + name + '\'' +
-                ", color='" + color + '\'' +
-                ", score=" + score +
-                '}';
     }
 
     /* ==================== */
