@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<GridPane fx:id="gridPane" alignment="CENTER" onMouseClicked="#onClickBoard" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/10.0.2-internal" fx:controller="app.controllers.BoardController" />
+<ScrollPane fitToHeight="true" fitToWidth="true" hvalue="0.5" vvalue="0.5" fx:id="scrollPane" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.controllers.BoardController">
+    <content>
+        <GridPane fx:id="gridPane" alignment="CENTER" onMouseClicked="#onClickBoard" />
+    </content>
+</ScrollPane>
