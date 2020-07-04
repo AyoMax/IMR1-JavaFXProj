@@ -136,7 +136,7 @@ public class PlayerconfigController implements Initializable, ViewSkill {
 
         try{
             for(var i = 0; i < nbPlayer; i++){
-                playerconfigNode[i] = FXMLLoader.load(getClass().getResource("../views/fxml/playerconfigPartials.fxml"));
+                playerconfigNode[i] = FXMLLoader.load(getClass().getResource("/app/views/fxml/playerconfigPartials.fxml"));
                 ((Label)playerconfigNode[i].getChildren().get(0)).setText("Joueur : "+(i+1));
                 playerInitContainer.getChildren().add( playerconfigNode[i]);
             }

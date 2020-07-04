@@ -50,7 +50,7 @@ public class BoardController implements Initializable, Observer {
             for (int j = 0; j < pawns[i].length; j++) {
                 try {
                     // Création de la vue du pion
-                    FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/fxml/pawnView.fxml"));
+                    FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/views/fxml/pawnView.fxml"));
                     Node pawnView     = loader.load();
                     // Association du model à la vue du pion
                     PawnController pawnController = loader.getController();

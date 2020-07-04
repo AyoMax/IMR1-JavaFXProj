@@ -64,7 +64,7 @@ public class GameController implements Initializable, ViewSkill, Observer {
         viewModel = mainModel.getGameModel();
         viewModel.addView(this);
         try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/fxml/boardView.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/views/fxml/boardView.fxml"));
             Node boardNode     = loader.load();
             BoardController boardController = loader.getController();
             boardController.setBoardModel(viewModel);

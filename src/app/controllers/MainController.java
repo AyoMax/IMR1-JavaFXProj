@@ -40,8 +40,8 @@ public class MainController implements Initializable, Observer {
         try{
             String viewName = mainModel.getState().name().toLowerCase()+"View";
             System.out.println("ViewName : "+viewName);
-            System.out.println("../views/fxml/"+viewName+".fxml");
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("../views/fxml/"+viewName+".fxml"));
+            System.out.println("/app/views/fxml/"+viewName+".fxml");
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/app/views/fxml/"+viewName+".fxml"));
             Node newView = loader.load();
             ViewSkill newViewController = ((ViewSkill)loader.getController());
             newViewController.setMainModel(mainModel);
